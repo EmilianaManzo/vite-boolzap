@@ -1,12 +1,17 @@
 <script>
+import Main from '../components/Main.vue';
     export default {
+        name: 'home' ,
+        components:{
+            Main
+        },
         
     }
 </script>
 
 <template>
     <div>
-        <h1>Home</h1>
+        <Main />
     </div>
 </template>
 
