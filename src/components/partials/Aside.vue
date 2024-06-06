@@ -1,12 +1,29 @@
 <script>
 import {store} from '../../data/store.js';
 import axios from 'axios';
+
   export default {
     data(){
       return{
         axios,
-        store
+        store,
+        user: {}
       }
+    },
+    methods:{
+      getApi(){
+        axios.get(store.apiUrl + 'users')
+          .then(result => {
+            console.log(result.data)
+          })
+          .catch(error => {
+            console.log(error.message)
+          })
+      }
+    },
+
+    mounted(){
+      this.getApi()
     }
   }
 </script>
@@ -19,7 +36,7 @@ import axios from 'axios';
                 <div class="top d_flex pd_xs dark debug">
 
                   <div class="img d_flex al_center fix-center debug">
-                    <img src="assets/img/avatar_io.jpg" alt="" class="brd_radius">
+                    <!-- <img src="assets/img/avatar_io.jpg" alt="" class="brd_radius"> -->
                   </div>
                   <nav class="d_flex f_end al_center dis_none  debug">
                     <i class="fa-solid fa-circle-notch"></i>
@@ -63,10 +80,14 @@ import axios from 'axios';
                   <div class="row scroll">
                     
                     <!-- stampiamo dinamicamente i contatti/chat  -->
-                    <div
+                    <!-- <div
+
+                    
                     v-for="(contact,indice) in searchContact"
                     @click="activeMessage = indice "
                     v-show="contact.visible"
+
+
                     class="col d_flex space_between al_center fix-center">
                       <div class="d_flex al_center">
                         <div class="img">
@@ -77,9 +98,9 @@ import axios from 'axios';
                           <p>{{contact.messages[contact.messages.length - 1 ].message}}</p>
                         </div>
                       </div>
-                      <!-- BUG: mi prende la data e l'orario anche del messaggio inviato  -->
+                      
                       <div class="hour d_flex f_end al_start dis_none ">{{contact.messages[contact.messages.length - 1 ].date}}</div>
-                    </div>
+                    </div> -->
 
 
                   </div>
